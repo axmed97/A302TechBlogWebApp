@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Article>
+
+<a href="/admin/article/create" class="btn btn-dark btn-block"></a>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Tags</th>
+            <th>Status</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+            </tr>
+        }
+    </tbody>
+</table>
