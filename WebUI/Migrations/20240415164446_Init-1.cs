@@ -5,24 +5,25 @@
 namespace WebUI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitIdentity3 : Migration
+    public partial class Init1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "PhoneNumber",
-                table: "Users");
+                name: "Test",
+                table: "Articles");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "PhoneNumber",
-                table: "Users",
-                type: "nvarchar(max)",
-                nullable: true);
+            migrationBuilder.AddColumn<bool>(
+                name: "Test",
+                table: "Articles",
+                type: "bit",
+                nullable: false,
+                defaultValue: false);
         }
     }
 }

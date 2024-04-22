@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebUI.Areas.Admin.ViewModels;
@@ -22,6 +23,7 @@ namespace WebUI.Areas.Admin.Controllers
             var users = await _userManager.Users.ToListAsync();
             return View(users);
         }
+
         [HttpGet]
         public async Task<IActionResult> AddRole(string userId)
         {

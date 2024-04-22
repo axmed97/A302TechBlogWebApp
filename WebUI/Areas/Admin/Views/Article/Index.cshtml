@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<Article>
 
-<a href="/admin/article/create" class="btn btn-dark btn-block"></a>
-<table>
+    @section Link{
+       <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
+    }
+
+
+<a href="/admin/article/create" class="btn btn-dark btn-block">Create</a>
+<table id="myTable" class="table table-dark table-striped table-bordered">
     <thead>
         <tr>
             <th>#</th>
@@ -17,7 +22,35 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Category.CategoryName</td>
+                <td>
+                    @foreach (var tag in item.ArticleTags)
+                    {
+                        <span>
+                            @tag.Tag.TagName
+                        </span> 
+                    }
+                </td>
+                <td>@(item.IsActive ? "aktiv" : "deaktiv")</td>
+                <td><img src="@item.PhotoUrl" width="200" /></td>
+                <td>
+                    <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                      <button type="submit" onclick="return confirm('Are you sure to delete this article: @item.Title')" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a class="btn btn-warning" asp-area="Admin" asp-controller="Article" asp-action="Edit" asp-route-id="@item.Id">
+                        Edit
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Script{
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js" ></script>
+<script>
+        let table = new DataTable('#myTable');
+</script>
+}

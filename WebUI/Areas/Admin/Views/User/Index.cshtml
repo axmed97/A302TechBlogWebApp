@@ -18,7 +18,7 @@
             counter++;
             <tr>
                 <td>@counter</td>
-                <td>@item.Email</td>
+                <td>@item.Firstname @item.Lastname</td>
                 <td>
                     @{
                         var roles = await _userManager.GetRolesAsync(item);

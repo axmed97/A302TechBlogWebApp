@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebUI.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    [Authorize(Roles = "Admin, Super Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

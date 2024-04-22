@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
         <label asp-for="Content"></label>
-        <textarea asp-for="Content" class="form-control"></textarea>
+        <textarea id="editor1" asp-for="Content" class="form-control"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -26,7 +26,27 @@
     </div>
     <div class="form-group">
         <input type="file" accept="image/*" name="file" class="form-control" value="" />
-        <span asp-validation-for="PhotoUrl"></span>
+        <span asp-validation-for="PhotoUrl" class="text-danger"></span>
     </div>
+    @if(User.IsInRole("Admin Editor") || User.IsInRole("Admin") || User.IsInRole("Super Admin") || User.IsInRole("Manager"))
+    {
+        <div class="form-group">
+            <input type="checkbox" asp-for="IsActive"/>
+            <label asp-for="IsActive"></label>
+        </div>
+        <div class="form-group">
+            <label asp-for="IsFeatured"></label>
+            <input type="checkbox" asp-for="IsFeatured"  />
+        </div>
+    }
     <input type="submit" class="btn btn-dark" value="Create" />
 </form>
+
+@section Script{
+
+        @* <script src="//cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script> *@
+        <script src="//cdn.ckeditor.com/4.22.0/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('editor1');
+        </script>
+}
